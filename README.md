@@ -25,8 +25,6 @@ When `[NAME]` is ommitted, current branch is used. On 'master' branch it do noth
 
 Default behavior pulls latest 'master' branch from 'origin' remote and rebases onto it. Tags are fetched too.
 
-Default behavior creates merge commit for branch with aleast 2 commits.
-
 ### Release - Tag
 
 `git op tag [VERSION]` creates version as a tag with auto-generated message of all merge commits.
