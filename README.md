@@ -7,7 +7,14 @@ One line table of contents: [Installing](#installing) | Usage: [Start - Branch](
 
 ## Installing
 
-Download your's OS/architecture binary into your $PATH from releases page.
+Download your's OS/architecture binary into your $PATH from [latest release page](https://github.com/garex/git-op/releases/latest).
+
+For linux/amd64:
+
+```bash
+sudo wget -O /usr/local/bin/git-op https://github.com/garex/git-op/releases/download/1.0/git-op
+sudo chmod +x /usr/local/bin/git-op
+```
 
 ## Usage
 
