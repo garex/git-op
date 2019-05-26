@@ -27,7 +27,7 @@ Default behavior pulls latest 'master' branch from 'origin' remote and rebases o
 
 ### Release - Tag
 
-`git op tag [VERSION]` creates version as a tag with auto-generated message of all merge commits.
+`git op tag [VERSION]` creates version as a tag.
 
 Assume we have last tag '1.2.3'.
 
