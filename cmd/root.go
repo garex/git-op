@@ -15,7 +15,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:     "git-op",
 	Short:   "Git branching tool",
-	Version: "1.1",
+	Version: "1.2",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
