@@ -13,8 +13,9 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "git-op",
-	Short: "Git branching tool",
+	Use:     "git-op",
+	Short:   "Git branching tool",
+	Version: "1.0",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
