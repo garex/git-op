@@ -80,7 +80,6 @@ Default behavior calls 'git op merge' before releasing.`,
 				}
 			}
 			version = strings.Join(versionParts, ".")
-			version = strings.TrimSuffix(version, ".0")
 		}
 
 		out, err = exec.Command("git", "tag", version, "master").CombinedOutput()
