@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/fatih/color"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -23,14 +24,27 @@ var rootCmd = &cobra.Command{
   \__, /_/\__/   \____/ .___/
  /____/              /_/
 
- Git branching tool v`, "'", "`", -1), "\n"),
+ Git branching tool`, "'", "`", -1), "\n"),
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute(version string) {
 	rootCmd.Version = version
-	rootCmd.Long += version
+	rootCmd.Long += color.New(color.FgGreen).Sprintf(" v%s", version)
+
+	rootCmd.SetOutput(color.Output)
+
+	cobra.AddTemplateFunc("StyleHeading", color.New(color.FgYellow).SprintFunc())
+	usageTemplate := rootCmd.UsageTemplate()
+	usageTemplate = strings.NewReplacer(
+		`Usage:`, `{{StyleHeading "Usage:"}}`,
+		`Aliases:`, `{{StyleHeading "Aliases:"}}`,
+		`Available Commands:`, `{{StyleHeading "Available Commands:"}}`,
+		`Global Flags:`, `{{StyleHeading "Global Flags:"}}`,
+		`Flags:`, `{{StyleHeading "Flags:"}}`,
+	).Replace(usageTemplate)
+	rootCmd.SetUsageTemplate(usageTemplate)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
