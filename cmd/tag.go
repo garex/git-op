@@ -21,8 +21,8 @@ var tagCmd = &cobra.Command{
 Assume we have last tag '1.2.3'.
 
 * 'VERSION' is ommited or 'patch' passed -- creates next 'patch' version: '1.2.4'.
-* 'minor' passed -- '1.3'.
-* 'major' passed -- '2.0'.
+* 'minor' passed -- '1.3.0'.
+* 'major' passed -- '2.0.0'.
 
 Default behavior calls 'git op merge' before releasing.`,
 	Args: cobra.MaximumNArgs(1),
@@ -80,7 +80,6 @@ Default behavior calls 'git op merge' before releasing.`,
 				}
 			}
 			version = strings.Join(versionParts, ".")
-			version = strings.TrimSuffix(version, ".0")
 		}
 
 		out, err = exec.Command("git", "tag", version, "master").CombinedOutput()
