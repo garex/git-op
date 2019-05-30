@@ -36,6 +36,8 @@ func Execute(version string) {
 	rootCmd.SetOutput(color.Output)
 
 	cobra.AddTemplateFunc("StyleHeading", color.New(color.FgYellow).SprintFunc())
+	cobra.AddTemplateFunc("StyleCommand", color.New(color.FgGreen).SprintFunc())
+	cobra.AddTemplateFunc("StyleFlag", color.New(color.FgGreen).SprintFunc())
 	usageTemplate := rootCmd.UsageTemplate()
 	usageTemplate = strings.NewReplacer(
 		`Usage:`, `{{StyleHeading "Usage:"}}`,
@@ -43,6 +45,9 @@ func Execute(version string) {
 		`Available Commands:`, `{{StyleHeading "Available Commands:"}}`,
 		`Global Flags:`, `{{StyleHeading "Global Flags:"}}`,
 		`Flags:`, `{{StyleHeading "Flags:"}}`,
+		`{{rpad .Name .NamePadding }}`, `{{rpad .Name .NamePadding | StyleCommand }}`,
+		`{{.LocalFlags.FlagUsages | trimTrailingWhitespaces}}`, `{{.LocalFlags.FlagUsages | trimTrailingWhitespaces | StyleFlag}}`,
+		`{{.InheritedFlags.FlagUsages | trimTrailingWhitespaces}}`, `{{.InheritedFlags.FlagUsages | trimTrailingWhitespaces | StyleFlag}}`,
 	).Replace(usageTemplate)
 	rootCmd.SetUsageTemplate(usageTemplate)
 
