@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"os/exec"
@@ -54,11 +55,25 @@ Tags are fetched too.`,
 			}
 			fmt.Printf("%s\n", out)
 		}
-		out, err = exec.Command("git", "rebase", "master").CombinedOutput()
+
+		out, err = exec.Command("git", "show-ref", "--heads", "-s", "master").CombinedOutput()
 		if err != nil {
 			log.Fatal(fmt.Sprintf("%s", out))
 		}
-		fmt.Printf("%s\n", out)
+		masterHash := out
+		out, err = exec.Command("git", "merge-base", "master", branch).CombinedOutput()
+		if err != nil {
+			log.Fatal(fmt.Sprintf("%s", out))
+		}
+		mergeHash := out
+
+		if !bytes.Equal(masterHash, mergeHash) {
+			out, err = exec.Command("git", "rebase", "master").CombinedOutput()
+			if err != nil {
+				log.Fatal(fmt.Sprintf("%s", out))
+			}
+			fmt.Printf("%s\n", out)
+		}
 
 		out, err = exec.Command("git", "checkout", "master").CombinedOutput()
 		if err != nil {
