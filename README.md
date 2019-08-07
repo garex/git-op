@@ -12,8 +12,7 @@ Download your's OS/architecture binary into your $PATH from [latest release page
 For linux/amd64:
 
 ```bash
-sudo wget -O /usr/local/bin/git-op https://github.com/garex/git-op/releases/latest/download/git-op_linux_amd64
-sudo chmod +x /usr/local/bin/git-op
+sudo wget -O /usr/local/bin/git-op https://github.com/garex/git-op/releases/latest/download/git-op_linux_amd64 && sudo chmod +x /usr/local/bin/git-op
 ```
 
 ## Usage
