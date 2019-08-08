@@ -15,7 +15,7 @@ import (
 var tagCmd = &cobra.Command{
 	Use:     "tag [VERSION]",
 	Aliases: []string{"t"},
-	Short:   "Release - Tag",
+	Short:   "Mark 'master' by next version",
 	Long: `'git op tag [VERSION]' creates version as a tag.
 
 Assume we have last tag '1.2.3'.

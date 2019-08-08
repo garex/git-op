@@ -14,7 +14,7 @@ import (
 var mergeCmd = &cobra.Command{
 	Use:     "merge [NAME]",
 	Aliases: []string{"m"},
-	Short:   "Finish - Merge",
+	Short:   "Finish branch by rebasing and merging it into 'master'",
 	Long: `'git op merge [NAME]' merges branch 'NAME' into 'master'.
 
 When 'NAME' is ommitted, current branch is used. On 'master' branch it do nothing.
