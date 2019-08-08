@@ -1,6 +1,10 @@
 package cmd
 
 import (
+	"fmt"
+	"log"
+	"os/exec"
+
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +20,17 @@ Default behavior calls 'git op tag' before pushin, which will create patch versi
 	Run: func(cmd *cobra.Command, args []string) {
 		tagCmd.Run(cmd, []string{})
 
+		out, err := exec.Command("git", "push", "origin", "master").CombinedOutput()
+		if err != nil {
+			log.Fatal(fmt.Sprintf("%s", out))
+		}
+		fmt.Printf("%s\n", out)
+
+		out, err = exec.Command("git", "push", "origin", "--tags").CombinedOutput()
+		if err != nil {
+			log.Fatal(fmt.Sprintf("%s", out))
+		}
+		fmt.Printf("%s\n", out)
 	},
 }
 
