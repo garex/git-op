@@ -24,14 +24,16 @@ var rootCmd = &cobra.Command{
   \__, /_/\__/   \____/ .___/
  /____/              /_/
 
- Git branching tool`, "'", "`", -1), "\n"),
+ Git branching tool v%s
+
+ Shortest workflow is "branch" -> "tag"`, "'", "`", -1), "\n"),
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute(version string) {
 	rootCmd.Version = version
-	rootCmd.Long += color.New(color.FgGreen).Sprintf(" v%s", version)
+	rootCmd.Long = strings.Replace(rootCmd.Long, "v%s", color.New(color.FgGreen).Sprintf("v%s", version), 1)
 
 	rootCmd.SetOutput(color.Output)
 
