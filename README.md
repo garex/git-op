@@ -3,7 +3,7 @@
 # git-op
 Git branching tool.
 
-One line table of contents: [Installing](#installing) | Usage: [Start - Branch](#start---branch), [Finish - Merge](#finish---merge), [Release - Tag](#release---tag).
+One line table of contents: [Installing](#installing) | Usage: [Branch](#branch), [Merge](#merge), [Tag](#tag), [Push](#push).
 
 ## Installing
 
@@ -16,6 +16,8 @@ sudo wget -O /usr/local/bin/git-op https://github.com/garex/git-op/releases/late
 ```
 
 ## Usage
+
+Shortest workflow is [branch](#branch) -> [push](#push).
 
 ### Branch
 
@@ -42,3 +44,9 @@ Assume we have last tag '1.2.3'.
 * 'major' passed -- '2.0.0'.
 
 Default behavior calls `git op merge` before releasing.
+
+### Push
+
+`git op push` push latest changes in 'master' with tags.
+
+Default behavior calls `git op tag` before pushin, which will create patch version bump.

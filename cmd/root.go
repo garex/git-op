@@ -26,7 +26,7 @@ var rootCmd = &cobra.Command{
 
  Git branching tool v%s
 
- Shortest workflow is "branch" -> "tag"`, "'", "`", -1), "\n"),
+ Shortest workflow is "branch" -> "push"`, "'", "`", -1), "\n"),
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
