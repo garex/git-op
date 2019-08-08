@@ -29,6 +29,14 @@ Default behavior calls 'git op merge' before releasing.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		mergeCmd.Run(cmd, []string{})
 
+		out, err := exec.Command("git", "tag", "--list", "--points-at", "master").CombinedOutput()
+		if err != nil {
+			log.Fatal(fmt.Sprintf("%s", out))
+		}
+		if len(out) > 0 {
+			log.Fatal(fmt.Sprintf("Master already tagged: %s", out))
+		}
+
 		version := "patch"
 		if len(args) > 0 {
 			version = args[0]
@@ -36,7 +44,7 @@ Default behavior calls 'git op merge' before releasing.`,
 
 		latestVersion := "0.0.0"
 		v, nil := semver.NewVersion(latestVersion)
-		out, err := exec.Command("git", "tag").CombinedOutput()
+		out, err = exec.Command("git", "tag").CombinedOutput()
 		if err != nil {
 			log.Fatal(fmt.Sprintf("%s", out))
 		}
