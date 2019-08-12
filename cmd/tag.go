@@ -34,7 +34,8 @@ Default behavior calls 'git op merge' before releasing.`,
 			log.Fatal(fmt.Sprintf("%s", out))
 		}
 		if len(out) > 0 {
-			log.Fatal(fmt.Sprintf("Master already tagged: %s", out))
+			log.Printf("Master already tagged: %s", out)
+			return
 		}
 
 		version := "patch"
