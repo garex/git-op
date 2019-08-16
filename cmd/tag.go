@@ -81,14 +81,6 @@ Default behavior calls 'git op merge' before releasing.`,
 				v := v.IncMajor()
 				version = v.String()
 			}
-			versionParts := strings.Split(version, ".")
-			latestVersionParts := strings.Split(latestVersion, ".")
-			for i, p := range latestVersionParts {
-				if p != "0" {
-					versionParts[i] = strings.TrimRight(p, "123456789") + versionParts[i]
-				}
-			}
-			version = strings.Join(versionParts, ".")
 		}
 
 		out, err = exec.Command("git", "tag", version, "master").CombinedOutput()
